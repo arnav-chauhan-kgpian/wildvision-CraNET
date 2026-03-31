@@ -1,0 +1,46 @@
+name: judgment config file for vision arena bench
+
+bench_name: vision_bench_0617
+
+judge_model: gpt-4o-mini
+
+reference: False
+ref_model: null
+
+baseline: True
+baseline_model: claude-3-sonnet-20240229
+
+pairwise: False
+
+temperature: 0
+max_tokens: 4096
+
+regex_pattern: \[\[([AB<>=]+)\]\]
+
+system_prompt: |
+  Please act as an impartial judge and evaluate the quality of the responses provided by two AI assistants to the user prompt displayed below.
+  You will be given assistant A's answer and assistant B's answer.
+  Your job is to evaluate which assistant's answer is better.
+
+  Begin your evaluation by generating your own answer to the prompt.
+  You must provide your answers before judging any answers.
+
+  After your reasoning, output only ONE label:
+  [[A>>B]], [[A>B]], [[A=B]], [[B>A]], or [[B>>A]]
+
+prompt_template:
+  - |
+    <|User Prompt|>
+    {question_1}
+
+    <|The Start of Assistant A's Answer|>
+    {answer_1}
+    <|The End of Assistant A's Answer|>
+
+    <|The Start of Assistant B's Answer|>
+    {answer_2}
+    <|The End of Assistant B's Answer|>
+
+model_list:
+  - BAAI/Bunny-v1_0-3B
+  - CraNET
